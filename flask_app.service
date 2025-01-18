@@ -1,0 +1,11 @@
+[Unit]
+Description=Flask-app
+After=network.target
+
+[Service]
+ExecStart=/home/ivasiluk/env/bin/python -m flask run -h 0.0.0.0 -p 80
+Environment="APP_SETTINGS=/home/ivasiluk/config.py"
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
