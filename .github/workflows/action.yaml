@@ -36,6 +36,7 @@ jobs:
           source: "deploy/docker-compose.yaml,deploy/docker_config.py"
           target: "flask_app_ci"
           strip_components: 1
+          key: ''
       - name: deploy app
         uses: appleboy/ssh-action@v1.2.0
         with:
