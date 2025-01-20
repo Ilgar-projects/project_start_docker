@@ -28,7 +28,7 @@ jobs:
           cat docker-compose-ci.yaml | envsubst > deploy/docker-compose.yaml
           cat docker-ci-config.py | envsubst > deploy/docker_config.py
       - name: copy files to server
-        uses: webfactory/ssh-scp@v0.7.0
+        uses: webfactory/ssh-scp-action@v0.7.0 # Исправлено имя action
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
