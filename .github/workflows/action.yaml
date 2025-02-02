@@ -32,20 +32,17 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          password: ${{ secrets.PASSWORD }}
           source: "deploy/docker-compose.yaml,deploy/docker_config.py"
           target: "flask_app_ci"
           strip_components: 1
-          debug: true
+          key: ''
       - name: deploy app
         uses: appleboy/ssh-action@v1.2.0
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          password: ${{ secrets.PASSWORD }}
           script: |
-            if [ ! -d "flask_app_ci" ]; then
-              mkdir flask_app_ci
-            fi
             cd flask_app_ci
-            docker-compose up -d
+            echo ${{ secrets.PASSWORD }} | sudo -S docker-compose up -d
