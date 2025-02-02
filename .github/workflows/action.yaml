@@ -28,7 +28,7 @@ jobs:
           cat docker-compose-ci.yaml | envsubst > deploy/docker-compose.yaml
           cat docker-ci-config.py | envsubst > deploy/docker_config.py
       - name: copy files to server
-        uses: webfactory/ssh-scp-action@v0.7.0 # Исправлено имя action
+        uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USERNAME }}
@@ -36,6 +36,7 @@ jobs:
           source: "deploy/docker-compose.yaml,deploy/docker_config.py"
           target: "flask_app_ci"
           strip_components: 1
+          key: ''
       - name: deploy app
         uses: appleboy/ssh-action@v1.2.0
         with:
@@ -44,4 +45,4 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             cd flask_app_ci
-            sudo docker-compose up -d
+            echo ${{ secrets.PASSWORD }} | sudo -S docker-compose up -d
