@@ -36,7 +36,6 @@ jobs:
           source: "deploy/docker-compose.yaml,deploy/docker_config.py"
           target: "flask_app_ci"
           strip_components: 1
-          key: ''
           debug: true
       - name: deploy app
         uses: appleboy/ssh-action@v1.2.0
@@ -46,7 +45,7 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           script: |
             if [ ! -d "flask_app_ci" ]; then
-                  mkdir flask_app_ci
+              mkdir flask_app_ci
             fi
             cd flask_app_ci
             echo ${{ secrets.PASSWORD }} | sudo -S docker-compose up -d
