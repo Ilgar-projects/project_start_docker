@@ -37,6 +37,7 @@ jobs:
           target: "flask_app_ci"
           strip_components: 1
           key: ''
+          debug: true
       - name: deploy app
         uses: appleboy/ssh-action@v1.2.0
         with:
