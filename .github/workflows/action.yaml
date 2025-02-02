@@ -48,4 +48,4 @@ jobs:
               mkdir flask_app_ci
             fi
             cd flask_app_ci
-            sudo docker-compose up -d
+            sudo -n docker-compose up -d
