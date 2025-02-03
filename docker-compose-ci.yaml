@@ -1,6 +1,7 @@
+version: "3.9"
 services:
   api:
-    image: igorek86/flask_app:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    image: igorek86/project_start_docker:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     ports:
       - 80:80
     volumes:
@@ -11,7 +12,7 @@ services:
       migrations:
         condition: service_completed_successfully
   migrations:
-    image: igorek86/flask_app:$GITHUB_REF_NAME-$GITHUB_RUN_ID
+    image: igorek86/project_start_docker:$GITHUB_REF_NAME-$GITHUB_RUN_ID
     volumes:
       - ./docker_config.py:/code/default_config.py
     depends_on:
