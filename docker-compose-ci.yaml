@@ -1,4 +1,3 @@
-version: "3.9"
 services:
   api:
     image: igorek86/project_start_docker:$GITHUB_REF_NAME-$GITHUB_RUN_ID
