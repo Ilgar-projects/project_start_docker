@@ -22,10 +22,11 @@ class User(db.Model):
 @app.route("/")
 def index():
     users = User.query.all()
-    response = {
-        "total": len(users),
-        "users": [{"username": user.username, "id": user.id} for user in users],
-    }
+    # response = {
+    #     "total": len(users),
+    #     "users": [{"username": user.username, "id": user.id} for user in users],
+    # }
+    response = {"МОЙ ТЕКСТ": "УРАА ПОЛУЧИЛОСЬ))))"}
     return jsonify(response)
 
 
